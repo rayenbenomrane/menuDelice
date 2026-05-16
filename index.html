@@ -20,12 +20,10 @@
 
     :root {
       --cream: #FAF6F0;
-      --cream-dark: #F0E8DC;
       --sage: #8FAF8A;
       --sage-dark: #5A8A5A;
       --sage-deep: #3A5A3A;
       --brown: #1C110A;
-      --brown-mid: #5C3D20;
       --brown-light: #9A7A60;
       --gold: #C9A96E;
       --gold-light: #E8D5A8;
@@ -40,93 +38,150 @@
       background: var(--cream);
       font-family: 'Cormorant Garamond', serif;
       color: var(--brown);
-      min-height: 100vh;
+      -webkit-text-size-adjust: 100%;
     }
 
-    /* ── NAV ── */
+    /* PROGRESS */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--gold);
+      z-index: 200;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    /* NAV */
     nav {
       position: sticky;
       top: 0;
       z-index: 100;
       background: var(--brown);
+      border-bottom: 1px solid #3A2810;
+    }
+
+    .nav-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 48px;
-      height: 64px;
-      border-bottom: 1px solid #3A2810;
+      padding: 0 20px;
+      height: 58px;
     }
 
     .nav-logo {
       display: flex;
       align-items: baseline;
-      gap: 0;
-      line-height: 1;
     }
 
     .logo-les {
       font-family: 'Bodoni Moda', serif;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: var(--gold-light);
-    }
-
-    .logo-de {
-      font-family: 'Great Vibes', cursive;
-      font-size: 26px;
-      color: var(--sage);
-      margin: 0 6px;
-      line-height: 1;
-    }
-
-    .logo-djerba {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 14px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--gold-light);
     }
 
+    .logo-de {
+      font-family: 'Great Vibes', cursive;
+      font-size: 21px;
+      color: var(--sage);
+      margin: 0 5px;
+      line-height: 1;
+    }
+
+    .logo-djerba {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
     .logo-since {
       font-family: 'Bodoni Moda', serif;
-      font-size: 8px;
+      font-size: 7px;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--sage);
-      margin-left: 14px;
-      padding-left: 14px;
+      margin-left: 10px;
+      padding-left: 10px;
       border-left: 1px solid #3A2810;
+      display: none;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      background: none;
+      border: none;
+      flex-shrink: 0;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--gold-light);
+      transition: all 0.25s;
+      transform-origin: center;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    /* Drawer */
+    .nav-drawer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: var(--brown);
+    }
+
+    .nav-drawer.open {
+      max-height: 320px;
     }
 
     .nav-links {
-      display: flex;
-      gap: 0;
       list-style: none;
-      height: 64px;
+      border-top: 1px solid #2A1808;
     }
 
     .nav-links li a {
       display: flex;
       align-items: center;
-      gap: 6px;
-      height: 64px;
-      padding: 0 18px;
+      gap: 12px;
+      padding: 14px 24px;
       font-family: 'Bodoni Moda', serif;
-      font-size: 15px;
+      font-size: 10px;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--gold-light);
       text-decoration: none;
-      border-right: 1px solid #2A1808;
-      transition: background 0.2s, color 0.2s;
+      border-bottom: 1px solid #2A1808;
       opacity: 0.75;
+      transition: background 0.15s, opacity 0.15s;
     }
 
-    .nav-links li:first-child a {
-      border-left: 1px solid #2A1808;
+    .nav-links li:last-child a {
+      border-bottom: none;
     }
 
     .nav-links li a:hover,
@@ -136,16 +191,16 @@
       opacity: 1;
     }
 
-    .nav-links li a .nav-icon {
-      font-size: 14px;
+    .nav-icon {
+      font-size: 15px;
     }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
       background: var(--sage);
       position: relative;
       overflow: hidden;
-      padding: 80px 64px 72px;
+      padding: 52px 24px 48px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -156,9 +211,7 @@
     .hero-stripes {
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(90deg,
-          transparent 0, transparent 32px,
-          rgba(255, 255, 255, 0.07) 32px, rgba(255, 255, 255, 0.07) 60px);
+      background: repeating-linear-gradient(90deg, transparent 0, transparent 28px, rgba(255, 255, 255, 0.07) 28px, rgba(255, 255, 255, 0.07) 52px);
       pointer-events: none;
     }
 
@@ -169,27 +222,26 @@
 
     .hero-eyebrow {
       font-family: 'Bodoni Moda', serif;
-      font-size: 9px;
-      letter-spacing: 6px;
+      font-size: 8px;
+      letter-spacing: 5px;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.55);
+      color: rgba(255, 255, 255, 0.5);
       display: block;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
     }
 
     .hero-title-row {
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      gap: 0;
       line-height: 1;
     }
 
     .hero-les {
       font-family: 'Bodoni Moda', serif;
-      font-size: 64px;
+      font-size: clamp(34px, 9vw, 68px);
       font-weight: 700;
-      letter-spacing: 10px;
+      letter-spacing: 8px;
       text-transform: uppercase;
       color: #FAF6F0;
       line-height: 1;
@@ -197,9 +249,9 @@
 
     .hero-delices {
       font-family: 'Bodoni Moda', serif;
-      font-size: 64px;
+      font-size: clamp(34px, 9vw, 68px);
       font-weight: 700;
-      letter-spacing: 6px;
+      letter-spacing: 5px;
       text-transform: uppercase;
       color: #FAF6F0;
       line-height: 1;
@@ -207,7 +259,7 @@
 
     .hero-djerba {
       font-family: 'Great Vibes', cursive;
-      font-size: 60px;
+      font-size: clamp(42px, 12vw, 68px);
       color: #F0EAD0;
       display: block;
       margin-top: 2px;
@@ -218,57 +270,52 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
-      margin: 20px auto;
+      gap: 14px;
+      margin: 16px auto;
     }
 
     .hero-orn-line {
       height: 1px;
-      width: 90px;
+      width: 60px;
       background: rgba(255, 255, 255, 0.3);
-    }
-
-    .hero-orn-palm {
-      font-size: 16px;
     }
 
     .hero-since {
       font-family: 'Bodoni Moda', serif;
-      font-size: 9px;
-      letter-spacing: 6px;
+      font-size: 8px;
+      letter-spacing: 5px;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(255, 255, 255, 0.45);
       display: block;
     }
 
     .hero-slogan {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 18px;
+      font-size: 17px;
       color: #E8F0E0;
       display: block;
-      margin-top: 14px;
+      margin-top: 12px;
       letter-spacing: 1px;
     }
 
-    /* ── MENU WRAPPER ── */
+    /* MENU PAGE */
     .menu-page {
-      max-width: 900px;
+      max-width: 860px;
       margin: 0 auto;
-      padding: 64px 48px 80px;
+      padding: 44px 18px 68px;
     }
 
-    /* ── SECTION ── */
     .menu-section {
-      margin-bottom: 72px;
-      scroll-margin-top: 80px;
+      margin-bottom: 56px;
+      scroll-margin-top: 68px;
     }
 
     .sec-head {
       display: flex;
       align-items: center;
-      gap: 18px;
-      margin-bottom: 36px;
+      gap: 12px;
+      margin-bottom: 26px;
     }
 
     .sec-line {
@@ -279,19 +326,20 @@
 
     .sec-center {
       text-align: center;
+      flex-shrink: 0;
     }
 
     .sec-icon {
-      font-size: 20px;
+      font-size: 17px;
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .sec-title {
       font-family: 'Bodoni Moda', serif;
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 5px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--sage-deep);
       display: block;
@@ -300,33 +348,32 @@
     .sec-subtitle {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 14px;
+      font-size: 12px;
       color: var(--brown-light);
       display: block;
-      margin-top: 4px;
+      margin-top: 3px;
     }
 
     .sec-bar {
       height: 2px;
-      width: 32px;
+      width: 26px;
       background: var(--sage);
       border-radius: 1px;
-      margin: 8px auto 0;
+      margin: 6px auto 0;
     }
 
-    /* ── PAPER MENU ITEMS ── */
+    /* PAPER ITEMS */
     .items-paper {
       display: flex;
       flex-direction: column;
-      gap: 0;
       border: 1px solid var(--border);
       background: #FFFDF8;
     }
 
     .menu-item {
       display: flex;
-      align-items: baseline;
-      padding: 16px 28px;
+      align-items: flex-start;
+      padding: 13px 16px;
       border-bottom: 1px dashed #DDD0BC;
       gap: 8px;
       transition: background 0.15s;
@@ -336,44 +383,54 @@
       border-bottom: none;
     }
 
-    .menu-item:hover {
-      background: #F5EDE0;
+    @media(hover:hover) {
+      .menu-item:hover {
+        background: #F5EDE0;
+      }
     }
 
     .item-number {
       font-family: 'Bodoni Moda', serif;
-      font-size: 11px;
+      font-size: 10px;
       color: var(--sage);
-      min-width: 24px;
+      min-width: 18px;
       font-style: italic;
       flex-shrink: 0;
+      padding-top: 3px;
+    }
+
+    .item-inner {
+      flex: 1;
+      min-width: 0;
     }
 
     .item-body {
-      flex: 1;
       display: flex;
       align-items: baseline;
-      gap: 0;
+      width: 100%;
     }
 
     .item-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--brown);
-      white-space: nowrap;
+      flex-shrink: 0;
+      max-width: 62%;
+      word-break: break-word;
     }
 
     .item-dots {
       flex: 1;
       border-bottom: 1px dotted #C8B89A;
-      margin: 0 10px;
-      margin-bottom: 4px;
+      margin: 0 8px;
+      margin-bottom: 3px;
+      min-width: 10px;
     }
 
     .item-price {
       font-family: 'Bodoni Moda', serif;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--sage-deep);
       white-space: nowrap;
@@ -383,25 +440,21 @@
     .item-desc {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 13px;
+      font-size: 12px;
       color: var(--brown-light);
       display: block;
       margin-top: 2px;
-      margin-left: 24px;
+      line-height: 1.5;
     }
 
-    .item-inner {
-      flex: 1;
-    }
-
-    /* ── DIVIDER ── */
+    /* DIVIDER */
     .sec-divider {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      margin: 56px 0;
-      opacity: 0.5;
+      gap: 10px;
+      margin: 40px 0;
+      opacity: 0.4;
     }
 
     .div-line {
@@ -411,50 +464,50 @@
     }
 
     .div-palm {
-      font-size: 14px;
+      font-size: 11px;
       color: var(--sage-dark);
     }
 
-    /* ── BANNER ── */
+    /* BANNER */
     .special-banner {
       background: var(--sage-deep);
       text-align: center;
-      padding: 40px 48px;
-      margin: 0 -48px;
+      padding: 32px 20px;
+      margin: 0 -18px;
     }
 
     .banner-great {
       font-family: 'Great Vibes', cursive;
-      font-size: 40px;
+      font-size: clamp(26px, 7vw, 40px);
       color: var(--gold-light);
       display: block;
     }
 
     .banner-sub {
       font-family: 'Bodoni Moda', serif;
-      font-size: 9px;
-      letter-spacing: 4px;
+      font-size: 8px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--sage);
       display: block;
       margin-top: 10px;
+      line-height: 2;
     }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer {
       background: var(--brown);
-      color: var(--gold-light);
-      padding: 44px 64px;
+      padding: 32px 24px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      flex-wrap: wrap;
+      gap: 20px;
+      text-align: center;
     }
 
     .footer-logo-les {
       font-family: 'Bodoni Moda', serif;
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 5px;
       text-transform: uppercase;
@@ -464,7 +517,7 @@
 
     .footer-logo-de {
       font-family: 'Great Vibes', cursive;
-      font-size: 28px;
+      font-size: 24px;
       color: var(--sage);
       display: block;
       line-height: 1.2;
@@ -472,7 +525,7 @@
 
     .footer-logo-since {
       font-family: 'Bodoni Moda', serif;
-      font-size: 8px;
+      font-size: 7px;
       letter-spacing: 4px;
       text-transform: uppercase;
       color: #5A6A50;
@@ -481,54 +534,40 @@
     }
 
     .footer-info {
-      text-align: center;
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 15px;
+      font-size: 13px;
       color: #8A9A80;
-      line-height: 1.8;
+      line-height: 2;
     }
 
     .footer-copy {
       font-family: 'Bodoni Moda', serif;
-      font-size: 8px;
+      font-size: 7px;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: #3A4A30;
-      text-align: right;
       line-height: 2;
     }
 
-    /* ── SCROLL PROGRESS ── */
-    .progress-bar {
-      position: fixed;
-      top: 64px;
-      left: 0;
-      height: 2px;
-      background: var(--gold);
-      z-index: 99;
-      width: 0%;
-      transition: width 0.1s linear;
-    }
-
-    /* ── BACK TO TOP ── */
+    /* BACK TO TOP */
     .back-top {
       position: fixed;
-      bottom: 32px;
-      right: 32px;
-      width: 44px;
-      height: 44px;
+      bottom: 20px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
       background: var(--brown);
       border: 1px solid var(--gold);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 15px;
       color: var(--gold-light);
       cursor: pointer;
       opacity: 0;
-      transform: translateY(12px);
+      transform: translateY(10px);
       transition: opacity 0.3s, transform 0.3s;
       text-decoration: none;
       z-index: 99;
@@ -539,8 +578,123 @@
       transform: translateY(0);
     }
 
-    .back-top:hover {
-      background: #2A1808;
+    /* TABLET+ */
+    @media(min-width:640px) {
+      .menu-page {
+        padding: 52px 32px 72px;
+      }
+
+      .special-banner {
+        margin: 0 -32px;
+        padding: 36px 32px;
+      }
+
+      .item-name {
+        font-size: 16px;
+        max-width: 66%;
+      }
+
+      .item-price {
+        font-size: 13px;
+      }
+
+      .menu-item {
+        padding: 14px 22px;
+      }
+    }
+
+    /* DESKTOP */
+    @media(min-width:768px) {
+      .hamburger {
+        display: none;
+      }
+
+      .nav-top {
+        padding: 0 40px;
+        height: 64px;
+      }
+
+      .logo-les,
+      .logo-djerba {
+        font-size: 13px;
+      }
+
+      .logo-de {
+        font-size: 24px;
+      }
+
+      .logo-since {
+        display: block;
+      }
+
+      .nav-drawer {
+        max-height: none !important;
+        overflow: visible;
+        background: transparent;
+        border-top: none;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-direction: row;
+        border-top: none;
+      }
+
+      .nav-links li a {
+        height: 64px;
+        padding: 0 16px;
+        border-bottom: none;
+        border-right: 1px solid #2A1808;
+        font-size: 9px;
+      }
+
+      .nav-links li:first-child a {
+        border-left: 1px solid #2A1808;
+      }
+
+      .menu-page {
+        padding: 60px 48px 80px;
+      }
+
+      .special-banner {
+        margin: 0 -48px;
+        padding: 40px 48px;
+      }
+
+      .item-name {
+        font-size: 17px;
+        max-width: 68%;
+      }
+
+      .item-price {
+        font-size: 14px;
+      }
+
+      .menu-item {
+        padding: 16px 28px;
+      }
+
+      footer {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        padding: 44px 64px;
+      }
+
+      .footer-info {
+        text-align: center;
+      }
+
+      .footer-copy {
+        text-align: right;
+      }
+
+      .back-top {
+        bottom: 28px;
+        right: 28px;
+        width: 42px;
+        height: 42px;
+      }
     }
   </style>
 </head>
@@ -550,19 +704,27 @@
   <div class="progress-bar" id="progress"></div>
 
   <nav>
-    <div class="nav-logo">
-      <span class="logo-les">Les Délices</span>
-      <span class="logo-de">De</span>
-      <span class="logo-djerba">Djerba</span>
-      <span class="logo-since">Depuis 1995</span>
+    <div class="nav-top">
+      <div class="nav-logo">
+        <span class="logo-les">Les Délices</span>
+        <span class="logo-de">De</span>
+        <span class="logo-djerba">Djerba</span>
+        <span class="logo-since">Depuis 1995</span>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <ul class="nav-links">
-      <li><a href="#gateaux"> Gâteaux</a></li>
-      <li><a href="#viennoiseries"> Viennoiseries</a></li>
-      <li><a href="#cafe">Café</a></li>
-      <li><a href="#jus"> Jus Frais</a></li>
-      <li><a href="#patisserie"> Pâtisserie</a></li>
-    </ul>
+    <div class="nav-drawer" id="navDrawer">
+      <ul class="nav-links">
+
+        <li><a href="#gateaux" class="nav-link">Gâteaux</a></li>
+        <li><a href="#viennoiseries" class="nav-link"> Viennoiseries</a></li>
+        <li><a href="#cafe" class="nav-link"> Café</a></li>
+        <li><a href="#jus" class="nav-link"> Jus Frais</a></li>
+        <li><a href="#patisserie" class="nav-link"> Pâtisserie</a></li>
+      </ul>
+    </div>
   </nav>
 
   <div class="hero">
@@ -576,6 +738,7 @@
       <span class="hero-djerba">De Djerba</span>
       <div class="hero-ornament">
         <div class="hero-orn-line"></div>
+
         <div class="hero-orn-line"></div>
       </div>
       <span class="hero-since">Depuis 1995</span>
@@ -585,14 +748,13 @@
 
   <div class="menu-page">
 
-    <!-- PÂTISSERIE TUNISIENNE -->
+
 
     <div class="sec-divider">
       <div class="div-line"></div><span class="div-palm">✦</span>
       <div class="div-line"></div>
     </div>
 
-    <!-- GÂTEAUX -->
     <div class="menu-section" id="gateaux">
       <div class="sec-head">
         <div class="sec-line"></div>
@@ -605,76 +767,60 @@
         <div class="sec-line"></div>
       </div>
       <div class="items-paper">
-        <div class="menu-item">
-          <span class="item-number">01</span>
+        <div class="menu-item"><span class="item-number">01</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Entremets Jasmin</span>
               <div class="item-dots"></div><span class="item-price">12,000 DT</span>
-            </div>
-            <span class="item-desc">Mousse vanille, insert mangue</span>
+            </div><span class="item-desc">Mousse vanille, insert mangue</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">02</span>
+        <div class="menu-item"><span class="item-number">02</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Tarte Citron Meringuée</span>
               <div class="item-dots"></div><span class="item-price">9,000 DT</span>
-            </div>
-            <span class="item-desc">Crème citron, meringue italienne</span>
+            </div><span class="item-desc">Crème citron, meringue italienne</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">03</span>
+        <div class="menu-item"><span class="item-number">03</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Mille-Feuille Caramel</span>
               <div class="item-dots"></div><span class="item-price">8,500 DT</span>
-            </div>
-            <span class="item-desc">Crème diplomate, caramel beurre salé</span>
+            </div><span class="item-desc">Crème diplomate, caramel beurre salé</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">04</span>
+        <div class="menu-item"><span class="item-number">04</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Cheesecake Dattes</span>
               <div class="item-dots"></div><span class="item-price">10,500 DT</span>
-            </div>
-            <span class="item-desc">Dattes de Djerba, biscuit amande</span>
+            </div><span class="item-desc">Dattes de Djerba, biscuit amande</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">05</span>
+        <div class="menu-item"><span class="item-number">05</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Éclair Pistache</span>
               <div class="item-dots"></div><span class="item-price">6,000 DT</span>
-            </div>
-            <span class="item-desc">Crème légère pistache, glaçage nacré</span>
+            </div><span class="item-desc">Crème légère pistache, glaçage nacré</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">06</span>
+        <div class="menu-item"><span class="item-number">06</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Paris-Brest Amandes</span>
               <div class="item-dots"></div><span class="item-price">7,500 DT</span>
-            </div>
-            <span class="item-desc">Praliné noisette, chantilly légère</span>
+            </div><span class="item-desc">Praliné noisette, chantilly légère</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">07</span>
+        <div class="menu-item"><span class="item-number">07</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Fondant Chocolat Noir</span>
               <div class="item-dots"></div><span class="item-price">7,000 DT</span>
-            </div>
-            <span class="item-desc">Couverture 70%, cœur coulant</span>
+            </div><span class="item-desc">Couverture 70%, cœur coulant</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">08</span>
+        <div class="menu-item"><span class="item-number">08</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Tarte Fraises &amp; Rose</span>
               <div class="item-dots"></div><span class="item-price">9,500 DT</span>
-            </div>
-            <span class="item-desc">Crème de rose, fraises fraîches</span>
+            </div><span class="item-desc">Crème de rose, fraises fraîches</span>
           </div>
         </div>
       </div>
@@ -685,7 +831,6 @@
       <div class="div-line"></div>
     </div>
 
-    <!-- VIENNOISERIES -->
     <div class="menu-section" id="viennoiseries">
       <div class="sec-head">
         <div class="sec-line"></div>
@@ -698,58 +843,46 @@
         <div class="sec-line"></div>
       </div>
       <div class="items-paper">
-        <div class="menu-item">
-          <span class="item-number">01</span>
+        <div class="menu-item"><span class="item-number">01</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Croissant Pur Beurre</span>
               <div class="item-dots"></div><span class="item-price">3,500 DT</span>
-            </div>
-            <span class="item-desc">Feuilletage artisanal, doré et croustillant</span>
+            </div><span class="item-desc">Feuilletage artisanal, doré et croustillant</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">02</span>
+        <div class="menu-item"><span class="item-number">02</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Pain au Chocolat</span>
               <div class="item-dots"></div><span class="item-price">4,000 DT</span>
-            </div>
-            <span class="item-desc">Deux bâtons Valrhona noir 70%</span>
+            </div><span class="item-desc">Deux bâtons Valrhona noir 70%</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">03</span>
+        <div class="menu-item"><span class="item-number">03</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Brioche Fleur d'Oranger</span>
               <div class="item-dots"></div><span class="item-price">4,500 DT</span>
-            </div>
-            <span class="item-desc">Tressée, sucre perlé, moelleuse</span>
+            </div><span class="item-desc">Tressée, sucre perlé, moelleuse</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">04</span>
+        <div class="menu-item"><span class="item-number">04</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Chausson aux Pommes</span>
               <div class="item-dots"></div><span class="item-price">4,000 DT</span>
-            </div>
-            <span class="item-desc">Compote cannelle maison, dorure miel</span>
+            </div><span class="item-desc">Compote cannelle maison, dorure miel</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">05</span>
+        <div class="menu-item"><span class="item-number">05</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Kouign-Amann</span>
               <div class="item-dots"></div><span class="item-price">5,000 DT</span>
-            </div>
-            <span class="item-desc">Beurre salé, caramel croustillant</span>
+            </div><span class="item-desc">Beurre salé, caramel croustillant</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">06</span>
+        <div class="menu-item"><span class="item-number">06</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Pain aux Raisins</span>
               <div class="item-dots"></div><span class="item-price">3,500 DT</span>
-            </div>
-            <span class="item-desc">Crème pâtissière, raisins muscats</span>
+            </div><span class="item-desc">Crème pâtissière, raisins muscats</span>
           </div>
         </div>
       </div>
@@ -760,7 +893,6 @@
       <div class="div-line"></div>
     </div>
 
-    <!-- CAFÉ -->
     <div class="menu-section" id="cafe">
       <div class="sec-head">
         <div class="sec-line"></div>
@@ -773,58 +905,46 @@
         <div class="sec-line"></div>
       </div>
       <div class="items-paper">
-        <div class="menu-item">
-          <span class="item-number">01</span>
+        <div class="menu-item"><span class="item-number">01</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Espresso</span>
               <div class="item-dots"></div><span class="item-price">2,500 DT</span>
-            </div>
-            <span class="item-desc">Arabica pur, extraction lente</span>
+            </div><span class="item-desc">Arabica pur, extraction lente</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">02</span>
+        <div class="menu-item"><span class="item-number">02</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Cappuccino</span>
               <div class="item-dots"></div><span class="item-price">4,500 DT</span>
-            </div>
-            <span class="item-desc">Espresso, lait moussé, cacao fin</span>
+            </div><span class="item-desc">Espresso, lait moussé, cacao fin</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">03</span>
+        <div class="menu-item"><span class="item-number">03</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Café au Lait</span>
               <div class="item-dots"></div><span class="item-price">3,500 DT</span>
-            </div>
-            <span class="item-desc">Doux, onctueux, réconfortant</span>
+            </div><span class="item-desc">Doux, onctueux, réconfortant</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">04</span>
+        <div class="menu-item"><span class="item-number">04</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Café aux Épices</span>
               <div class="item-dots"></div><span class="item-price">4,000 DT</span>
-            </div>
-            <span class="item-desc">Cardamome &amp; eau de rose de Djerba</span>
+            </div><span class="item-desc">Cardamome &amp; eau de rose de Djerba</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">05</span>
+        <div class="menu-item"><span class="item-number">05</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Thé à la Menthe</span>
               <div class="item-dots"></div><span class="item-price">3,000 DT</span>
-            </div>
-            <span class="item-desc">Menthe fraîche, pignons de pin</span>
+            </div><span class="item-desc">Menthe fraîche, pignons de pin</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">06</span>
+        <div class="menu-item"><span class="item-number">06</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Chocolat Chaud Maison</span>
               <div class="item-dots"></div><span class="item-price">5,000 DT</span>
-            </div>
-            <span class="item-desc">Couverture noir, chantilly légère</span>
+            </div><span class="item-desc">Couverture noir, chantilly légère</span>
           </div>
         </div>
       </div>
@@ -835,12 +955,11 @@
       <div class="div-line"></div>
     </div>
 
-    <!-- JUS -->
     <div class="menu-section" id="jus">
       <div class="sec-head">
         <div class="sec-line"></div>
         <div class="sec-center">
-
+          <span class="sec-icon">🧃</span>
           <span class="sec-title">Jus Frais Naturels</span>
           <div class="sec-subtitle">Pressés à la minute, sans conservateur</div>
           <div class="sec-bar"></div>
@@ -848,58 +967,46 @@
         <div class="sec-line"></div>
       </div>
       <div class="items-paper">
-        <div class="menu-item">
-          <span class="item-number">01</span>
+        <div class="menu-item"><span class="item-number">01</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Jus d'Orange Frais</span>
               <div class="item-dots"></div><span class="item-price">5,000 DT</span>
-            </div>
-            <span class="item-desc">Pressé à la minute, vitaminé</span>
+            </div><span class="item-desc">Pressé à la minute, vitaminé</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">02</span>
+        <div class="menu-item"><span class="item-number">02</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Limonade Menthe-Gingembre</span>
               <div class="item-dots"></div><span class="item-price">5,500 DT</span>
-            </div>
-            <span class="item-desc">Citron vert, menthe fraîche, gingembre</span>
+            </div><span class="item-desc">Citron vert, menthe fraîche, gingembre</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">03</span>
+        <div class="menu-item"><span class="item-number">03</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Jus de Grenade</span>
               <div class="item-dots"></div><span class="item-price">6,500 DT</span>
-            </div>
-            <span class="item-desc">Grenades de Djerba, citron doré</span>
+            </div><span class="item-desc">Grenades de Djerba, citron doré</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">04</span>
+        <div class="menu-item"><span class="item-number">04</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Smoothie Tropical</span>
               <div class="item-dots"></div><span class="item-price">7,000 DT</span>
-            </div>
-            <span class="item-desc">Mangue, ananas, lait de coco</span>
+            </div><span class="item-desc">Mangue, ananas, lait de coco</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">05</span>
+        <div class="menu-item"><span class="item-number">05</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Jus Carotte-Gingembre</span>
               <div class="item-dots"></div><span class="item-price">5,500 DT</span>
-            </div>
-            <span class="item-desc">Pressé froid, racines fraîches</span>
+            </div><span class="item-desc">Pressé froid, racines fraîches</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">06</span>
+        <div class="menu-item"><span class="item-number">06</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Milkshake Pistache</span>
               <div class="item-dots"></div><span class="item-price">7,500 DT</span>
-            </div>
-            <span class="item-desc">Pistache de Sicile, glace vanille</span>
+            </div><span class="item-desc">Pistache de Sicile, glace vanille</span>
           </div>
         </div>
       </div>
@@ -908,7 +1015,6 @@
       <div class="div-line"></div><span class="div-palm">✦</span>
       <div class="div-line"></div>
     </div>
-
     <div class="menu-section" id="patisserie">
       <div class="sec-head">
         <div class="sec-line"></div>
@@ -921,85 +1027,68 @@
         <div class="sec-line"></div>
       </div>
       <div class="items-paper">
-        <div class="menu-item">
-          <span class="item-number">01</span>
+        <div class="menu-item"><span class="item-number">01</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Baklawa aux Noix</span>
               <div class="item-dots"></div><span class="item-price">3,500 DT</span>
-            </div>
-            <span class="item-desc">Miel de fleurs, cannelle, feuilletage fin</span>
+            </div><span class="item-desc">Miel de fleurs, cannelle, feuilletage fin</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">02</span>
+        <div class="menu-item"><span class="item-number">02</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Makroudh</span>
               <div class="item-dots"></div><span class="item-price">2,500 DT</span>
-            </div>
-            <span class="item-desc">Dattes fondantes &amp; semoule fine</span>
+            </div><span class="item-desc">Dattes fondantes &amp; semoule fine</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">03</span>
+        <div class="menu-item"><span class="item-number">03</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Kaak Warka</span>
               <div class="item-dots"></div><span class="item-price">4,000 DT</span>
-            </div>
-            <span class="item-desc">Amandes, fleur d'oranger &amp; miel</span>
+            </div><span class="item-desc">Amandes, fleur d'oranger &amp; miel</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">04</span>
+        <div class="menu-item"><span class="item-number">04</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Samsa</span>
               <div class="item-dots"></div><span class="item-price">3,000 DT</span>
-            </div>
-            <span class="item-desc">Miel ambré, cacahuètes grillées</span>
+            </div><span class="item-desc">Miel ambré, cacahuètes grillées</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">05</span>
+        <div class="menu-item"><span class="item-number">05</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Ghraïba au Sésame</span>
               <div class="item-dots"></div><span class="item-price">2,500 DT</span>
-            </div>
-            <span class="item-desc">Pistache, sésame doré, fondant en bouche</span>
+            </div><span class="item-desc">Pistache, sésame doré, fondant en bouche</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">06</span>
+        <div class="menu-item"><span class="item-number">06</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Zlabia</span>
               <div class="item-dots"></div><span class="item-price">2,000 DT</span>
-            </div>
-            <span class="item-desc">Sirop de rose, croustillant &amp; léger</span>
+            </div><span class="item-desc">Sirop de rose, croustillant &amp; léger</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">07</span>
+        <div class="menu-item"><span class="item-number">07</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Bsissa Sucrée</span>
               <div class="item-dots"></div><span class="item-price">3,500 DT</span>
-            </div>
-            <span class="item-desc">Orge grillée, anis, huile d'olive</span>
+            </div><span class="item-desc">Orge grillée, anis, huile d'olive</span>
           </div>
         </div>
-        <div class="menu-item">
-          <span class="item-number">08</span>
+        <div class="menu-item"><span class="item-number">08</span>
           <div class="item-inner">
             <div class="item-body"><span class="item-name">Asida au Miel</span>
               <div class="item-dots"></div><span class="item-price">4,500 DT</span>
-            </div>
-            <span class="item-desc">Miel de thym, beurre smen</span>
+            </div><span class="item-desc">Miel de thym, beurre smen</span>
           </div>
         </div>
       </div>
     </div>
-
-
     <div class="special-banner">
       <span class="banner-great">Djerba se savoure…</span>
-      <span class="banner-sub">Tous nos produits sont préparés chaque matin avec des ingrédients frais et locaux</span>
+      <span class="banner-sub">Tous nos produits sont préparés chaque matin<br>avec des ingrédients frais et
+        locaux</span>
     </div>
 
   </div>
@@ -1013,7 +1102,7 @@
     <div class="footer-info">
       Djerba, Tunisie<br>
       Ouvert 7j/7 · 7h00 — 22h00<br>
-      🌴 lesdelicesdedjerba.tn
+
     </div>
     <div class="footer-copy">
       Pâtisserie Artisanale<br>
@@ -1026,24 +1115,33 @@
   <script>
     const progress = document.getElementById('progress');
     const backTop = document.getElementById('backTop');
-    const navLinks = document.querySelectorAll('.nav-links a');
+    const hamburger = document.getElementById('hamburger');
+    const navDrawer = document.getElementById('navDrawer');
+    const navLinkEls = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('.menu-section');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      navDrawer.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    navLinkEls.forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navDrawer.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
 
     window.addEventListener('scroll', () => {
       const scrolled = window.scrollY;
       const total = document.body.scrollHeight - window.innerHeight;
       progress.style.width = Math.min(100, (scrolled / total) * 100) + '%';
-
-      backTop.classList.toggle('show', scrolled > 400);
-
+      backTop.classList.toggle('show', scrolled > 300);
       let current = '';
-      sections.forEach(s => {
-        if (scrolled >= s.offsetTop - 120) current = s.id;
-      });
-
-      navLinks.forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-      });
+      sections.forEach(s => { if (scrolled >= s.offsetTop - 130) current = s.id; });
+      navLinkEls.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
     });
   </script>
 </body>
